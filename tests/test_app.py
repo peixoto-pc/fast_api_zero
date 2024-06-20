@@ -11,3 +11,11 @@ def test_read_root():
     response = client.get('/')
     assert response.status_code == HTTPStatus.OK
     assert response.json() == {'message': 'Olá Mundo!'}
+
+
+def test_read_html():
+    client = TestClient(app)
+
+    response = client.get('/html')
+    assert response.status_code == HTTPStatus.OK
+    assert response.text.find('Olá Mundo') > 0
